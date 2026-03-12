@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -116,6 +117,116 @@ fun Bienvenida(user: User) {
         )
     }
 }
+
+//Cards
+@Composable
+fun Cards(sumaryCard: List<SumaryCard>){
+    //Cajas?
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(220.dp),
+        horizontalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        //Caja verde
+        Card(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(Color(0xFFE6F2ED))
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Face,
+                    contentDescription = "Actividad",
+                    modifier = Modifier
+                        .size(36.dp)
+                )
+                Text(
+                    text = "Actividad",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "de la semana",
+                    fontSize = 14.sp,
+                    color = Color.Gray
+                )
+            }
+        }
+        //Cajas verde y naranja?
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            //Tarejeta ventas
+            Card(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(Color(0xFFF1E4D9))
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = sumaryCard[1].titulo,
+                        fontSize = 16.sp,
+                        color = Color.Gray
+                    )
+                    Text(
+                        text = "$${sumaryCard[1].monto}",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
+            //Tarjeta Ganancias
+            Card(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(Color(0xFFE5E0F6))
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = sumaryCard[2].titulo,
+                        fontSize = 16.sp,
+                        color = Color.Gray
+                    )
+                    Text(
+                        text = "$${sumaryCard[2].monto}",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+        }
+    }
+}
+
+//Transactions
+
+
 
 
 @Preview(showBackground = true, showSystemUi = true)
