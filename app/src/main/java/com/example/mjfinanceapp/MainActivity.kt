@@ -46,6 +46,8 @@ import models.User
 import models.listaSumaryCard
 import models.listaTransacciones
 import models.listaUsuario
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +65,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyComplexLayout(innerPadding: PaddingValues) {
+    val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier
@@ -70,11 +73,14 @@ fun MyComplexLayout(innerPadding: PaddingValues) {
             .fillMaxSize()
             .background(Color.White)
             .padding(horizontal = 15.dp, vertical = 30.dp)
+            .verticalScroll(scrollState)
     ) {
         //Bienvenida
         listaUsuario.forEach { user ->
             Bienvenida(user = user)
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
 
         //CARDS
         Cards(sumaryCard = listaSumaryCard)
@@ -281,6 +287,7 @@ fun TransaccionesItem(transaction: Transaction){
     ) {
         Box(
             modifier = Modifier
+                .padding(10.dp)
                 .size(50.dp)
                 .clip(CircleShape)
                 .background(Color.Black),
@@ -333,5 +340,6 @@ fun TransaccionesItem(transaction: Transaction){
 fun GreetingPreview() {
     MJFinanceAppTheme {
         MyComplexLayout(innerPadding = PaddingValues(10.dp))
+
     }
 }
